@@ -59,23 +59,10 @@ A premium protein bar brand website built with React 19, Vite, Tailwind CSS v4, 
 
 ---
 
-## 📸 Visual Preview
+## 📸 Hero Section (Live Deployment)
 
-### Live Deployment Screenshot
-![One Protein - Full Page](one-protein-screenshot.png)
-*Complete live deployment showing: Hero with rotating protein bars & ticket CTA, ZigZag divider, Ingredients grid with circular cutouts, Flavors 3-column cards with rotated bars, ZigZag divider, Banner with lifestyle photo & headline, ZigZag divider, Fuel 3-column with center showcase, ZigZag divider, Reviews with cutout lifestyle images, ZigZag divider, Footer with newsletter & giant text*
-
-### Key UI Sections (from live deployment)
-
-| Section | Features |
-|---------|----------|
-| **Hero** | Split layout: left "ONE Protein For Everyone" headline with ticket "Shop Now" CTA, right rotating protein bar showcase (3 variants), "18g Protein" badge, ZigZag divider |
-| **Ingredients** | 5-column grid with circular cutout images (grass, caramel, powder, choco-chunks, palm-fruit), staggered scroll reveal, hover scale animation |
-| **Flavors** | 3 cards: Chocolate Almond (green bg, -8° rotation), Birthday Cake (blue gradient, -5°, large "Add to Cart"), Glazed Doughnut (purple bg, +5°), hover lift & scale |
-| **Banner** | Full-width lifestyle photo (hands-banner), gradient overlay, "ONE Protein For Everyone" headline with ticket Shop Now, bike icon, Quality Stamp |
-| **Fuel** | 3 columns: Muscle Fuel (rotating Reese's bar, leaf icon), Center 20g Protein (large rotating Birthday bar, zigzag line), Quality (customer avatars, choco-splash cutout) |
-| **Reviews** | 2-column: left testimonial cards (Amelia Julien 5★, Natasha Romanoff), right lifestyle cutouts (hiker, surfer) with floating badges |
-| **Footer** | Wave mountain SVG backdrop, newsletter form (ticket input + Subscribe), navigation grid, social icons, giant "One Protein" text-stroke headline |
+![One Protein - Hero](one-protein-hero.png)
+*Hero: "ONE Protein For Everyone" headline with ticket "Shop Now" CTA, right side rotating protein bar showcase (3 variants: Chocolate Almond, Birthday Cake, Glazed Doughnut), "18g Protein" badge, ZigZag divider*
 
 ---
 

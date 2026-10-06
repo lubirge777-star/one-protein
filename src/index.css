@@ -1,0 +1,208 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Anton", "Barlow Condensed", sans-serif;
+  --font-condensed: "Barlow Condensed", "Arial Narrow", sans-serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+
+  --color-navy-950: #0a1f44;
+  --color-navy-900: #12294e;
+  --color-navy-800: #1d3563;
+  --color-brand-blue: #3d8fd4;
+  --color-brand-sky: #2fb9ef;
+  --color-brand-mid: #3a8bca;
+  --color-brand-yellow: #f9e84a;
+  --color-brand-orange: #ff6a1a;
+  --color-cream: #fdf6ec;
+}
+
+/* ───────── Design unit: 1 = 1px of the 824×459 reference frame (desktop) ───────── */
+:root {
+  --s: 1px;
+}
+@media (min-width: 1024px) {
+  :root {
+    --s: max(0.95px, min(0.12136vw, 0.2179vh, 2.3px));
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 76px;
+}
+@media (min-width: 1024px) {
+  html {
+    scroll-padding-top: calc(var(--s) * 56);
+  }
+}
+
+body {
+  font-family: var(--font-sans);
+  background: #0a1f44;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: clip;
+}
+
+.font-display { font-family: var(--font-display); }
+.font-condensed { font-family: var(--font-condensed); }
+
+/* ───────── Ticket shapes (torn zig-zag sides) ───────── */
+.ticket {
+  --t: 3px;
+  clip-path: polygon(
+    0 0, 100% 0,
+    calc(100% - var(--t)) 12.5%, 100% 25%, calc(100% - var(--t)) 37.5%, 100% 50%,
+    calc(100% - var(--t)) 62.5%, 100% 75%, calc(100% - var(--t)) 87.5%, 100% 100%,
+    0 100%,
+    var(--t) 87.5%, 0 75%, var(--t) 62.5%, 0 50%, var(--t) 37.5%, 0 25%, var(--t) 12.5%
+  );
+}
+.ticket-clip-sm {
+  clip-path: polygon(
+    0% 0%, 100% 0%,
+    100% 18%, 97.5% 28%, 100% 38%,
+    100% 62%, 97.5% 72%, 100% 82%,
+    100% 100%, 0% 100%,
+    0% 82%, 2.5% 72%, 0% 62%,
+    0% 38%, 2.5% 28%, 0% 18%
+  );
+}
+
+/* Hard offset "sticker" shadow that presses in on hover/active */
+.shadow-wrap {
+  --sx: 3px;
+  --sy: 3px;
+  --sc: #0b1a36;
+  filter: drop-shadow(var(--sx) var(--sy) 0 var(--sc));
+  transition: filter 0.2s ease, transform 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.shadow-wrap:hover,
+.shadow-wrap:focus-visible {
+  transform: translate(calc(var(--sx) * 0.45), calc(var(--sy) * 0.45));
+  filter: drop-shadow(calc(var(--sx) * 0.55) calc(var(--sy) * 0.55) 0 var(--sc));
+}
+.shadow-wrap:active {
+  transform: translate(var(--sx), var(--sy));
+  filter: drop-shadow(0 0 0 var(--sc));
+}
+.shadow-wrap:focus-visible { outline: none; }
+.shadow-wrap:focus-visible > .ticket { box-shadow: inset 0 0 0 2px #ff6a1a; }
+.shadow-static {
+  --sx: 3px;
+  --sy: 3px;
+  --sc: #0b1a36;
+  filter: drop-shadow(var(--sx) var(--sy) 0 var(--sc));
+}
+
+/* ───────── Header ───────── */
+.nav-link {
+  position: relative;
+  font-family: var(--font-condensed);
+  font-weight: 600;
+  font-size: calc(var(--s) * 10.5);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: #fff;
+  white-space: nowrap;
+  transition: color 0.2s ease;
+}
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: calc(var(--s) * -5);
+  height: max(2px, calc(var(--s) * 1.5));
+  border-radius: 2px;
+  background: #f9e84a;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.nav-link:hover,
+.nav-link:focus-visible { color: #f9e84a; outline: none; }
+.nav-link:hover::after,
+.nav-link:focus-visible::after { transform: scaleX(1); }
+
+.zz-teeth {
+  height: max(5px, calc(var(--s) * 4));
+  background: #3d8fd4;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 6' preserveAspectRatio='none'%3E%3Cpath d='M0 0h12L6 6z'/%3E%3C/svg%3E") 0 0 / max(9px, calc(var(--s) * 7)) 100% repeat-x;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 6' preserveAspectRatio='none'%3E%3Cpath d='M0 0h12L6 6z'/%3E%3C/svg%3E") 0 0 / max(9px, calc(var(--s) * 7)) 100% repeat-x;
+}
+
+/* ───────── Hero ───────── */
+.tire-band {
+  pointer-events: none;
+  opacity: 0.085;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='75' viewBox='0 0 28 75'%3E%3Cg fill='%23fff'%3E%3Cpath d='M2 4h12l6 16H8z'/%3E%3Cpath d='M10 26h10l3 8H13z'/%3E%3Cpath d='M13 41h10l-3 8H10z'/%3E%3Cpath d='M8 55h12l-6 16H2z'/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+  background-size: calc(var(--s) * 28) calc(var(--s) * 75);
+  background-position: 0 50%;
+}
+
+.ice-fade {
+  -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+}
+
+.bar-shadow {
+  filter: drop-shadow(0 calc(var(--s) * 5) calc(var(--s) * 5) rgba(2, 10, 30, 0.45));
+}
+
+.lift {
+  transition: transform 0.45s cubic-bezier(0.2, 0.9, 0.3, 1.25);
+  will-change: transform;
+}
+a:hover > .lift,
+a:focus-visible > .lift {
+  transform: translateY(calc(var(--s) * -7));
+}
+a:focus-visible > .lift { outline: 2px solid #f9e84a; outline-offset: 4px; border-radius: 6px; }
+
+@keyframes climber-swing {
+  0%, 100% { transform: rotate(-4deg); }
+  50% { transform: rotate(3.5deg); }
+}
+.climber {
+  transform-origin: 57% 2%;
+  animation: climber-swing 6s ease-in-out infinite;
+}
+
+@keyframes badge-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(calc(var(--s) * -3.5)); }
+}
+.badge-float { animation: badge-float 4.5s ease-in-out infinite; }
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* ───────── Utilities ───────── */
+.mask-fade-sides {
+  -webkit-mask-image:
+    linear-gradient(to bottom, transparent 0%, black 10%, black 100%),
+    linear-gradient(to right, transparent 0%, black 9%, black 91%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(to bottom, transparent 0%, black 10%, black 100%),
+    linear-gradient(to right, transparent 0%, black 9%, black 91%, transparent 100%);
+  mask-composite: intersect;
+}
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+::selection { background: #f9e84a; color: #12294e; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .climber,
+  .badge-float { animation: none; }
+  .lift,
+  .shadow-wrap { transition: none; }
+}
